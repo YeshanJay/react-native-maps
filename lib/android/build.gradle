@@ -3,7 +3,7 @@ apply from: 'gradle-maven-push.gradle'
 
 android {
   compileSdkVersion 25
-  buildToolsVersion "25.0.3"
+  buildToolsVersion '27.0.3'
 
   defaultConfig {
     minSdkVersion 16
@@ -34,9 +34,16 @@ android {
 }
 
 dependencies {
-  provided "com.facebook.react:react-native:+"
-  compile "com.google.android.gms:play-services-base:10.2.4"
-  compile "com.google.android.gms:play-services-maps:10.2.4"
-  compile(name: "android-maps-utils", ext:"aar")
-  compile "org.apache.commons:commons-math3:3.6.1"
+  compileOnly "com.facebook.react:react-native:+"
+  implementation "com.google.android.gms:play-services-base:10.2.4"
+  implementation "com.google.android.gms:play-services-maps:10.2.4"
+  implementation(name: "android-maps-utils", ext:"aar")
+  implementation "org.apache.commons:commons-math3:3.6.1"
+}
+
+configurations.all {
+  resolutionStrategy {
+    force 'com.android.support:support-compat:26.1.0'
+    force 'com.android.support:appcompat-v7:26.1.0'
+  }
 }
